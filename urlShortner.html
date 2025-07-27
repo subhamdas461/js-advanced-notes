@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>URL Shortener</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+    }
+    .container {
+      max-width: 500px;
+      margin: auto;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px 0;
+      width: 100%;
+      font-size: 16px;
+    }
+    .result {
+      margin-top: 10px;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>🔗 URL Shortener</h2>
+    <input type="text" id="longUrl" placeholder="Enter long URL (e.g. https://example.com)"/>
+    <button onclick="shortenUrl()">Shorten</button>
+    <div class="result" id="shortUrlOutput"></div>
+
+    <h3>Simulate Redirection</h3>
+    <input type="text" id="shortCode" placeholder="Enter short code (e.g. abc123)"/>
+    <button onclick="redirectToLongUrl()">Go</button>
+    <div class="result" id="redirectOutput"></div>
+  </div>
+
+  <script>
+    const urlMap = new Map(); // shortCode -> longUrl
+    const baseURL = "https://short.ly/";
+
+    function generateShortCode(length = 6) {
+      const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      let code = "";
+      for (let i = 0; i < length; i++) {
+        code += chars.charAt(Math.floor(Math.random() * chars.length));
+      }
+      return code;
+    }
+
+    function shortenUrl() {
+      const longUrl = document.getElementById("longUrl").value.trim();
+      const output = document.getElementById("shortUrlOutput");
+
+      if (!longUrl || !longUrl.startsWith("http")) {
+        output.textContent = "❌ Please enter a valid URL.";
+        output.style.color = "red";
+        return;
+      }
+
+      const code = generateShortCode();
+      urlMap.set(code, longUrl);
+      const shortUrl = baseURL + code;
+
+      output.textContent = `✅ Short URL: ${shortUrl}`;
+      output.style.color = "green";
+    }
+
+    function redirectToLongUrl() {
+      const code = document.getElementById("shortCode").value.trim();
+      const output = document.getElementById("redirectOutput");
+
+      if (!code || !urlMap.has(code)) {
+        output.textContent = "❌ Short URL not found.";
+        output.style.color = "red";
+        return;
+      }
+
+      const originalUrl = urlMap.get(code);
+      output.innerHTML = `🔁 Redirecting to: <a href="${originalUrl}" target="_blank">${originalUrl}</a>`;
+      output.style.color = "green";
+    }
+  </script>
+</body>
+</html>

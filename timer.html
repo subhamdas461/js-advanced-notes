@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="./css/timer.css">
+    <title>Document</title>
+    <style>
+        circle{
+            stroke-width: 8;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <header class="main__navbar">
+            <button class="main__navbar--timer">Timer</button>
+            <button class="main__navbar--stopwatch">Stopwatch</button>
+            <div class="main__navbar--audio">a</div>
+        </header>
+        <div class="main__times">
+            <h2 class="main__times-time">5:00</h2>
+            <div class="main__times--addtime">
+                <button class="addtime__one add1">+0:30</button>
+                <button class="addtime__two add2">+1:30</button>
+                <button class="addtime__three add3">+5:30</button>
+            </div>
+            <div class="timer-container">
+  <svg class="circle-timer" width="180" height="180">
+    <circle class="bg" cx="60" cy="60" r="64" />
+    <circle class="progress" cx="60" cy="60" r="54" />
+  </svg>
+  <div class="time-text" id="time">00:10</div>
+</div>
+
+        </div>
+        <div class="main__funtion-btn">
+        <button class="main__start btn-show">▶️</button>
+        <button class="main__stop ">⏹️</button>
+        <button class="main__reset ">🔃</button>
+        </div>
+        
+    
+    </div>
+    <script src="./timer.js"></script>
+</body>
+</html>

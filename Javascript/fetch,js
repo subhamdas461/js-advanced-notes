@@ -1,0 +1,78 @@
+//fetch(url, options);
+
+// GET
+fetch('https://api.example.com/data')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch(error => console.error('Fetch Error:', error));
+
+// POST
+fetch('https://api.example.com/users', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer abc123'
+  },
+  body: JSON.stringify({ name: 'Alice', age: 30 })
+})
+.then(res => res.json())
+.then(data => console.log(data))
+.catch(err => console.error('Error:', err));
+
+// Local pdf
+fetch('/file.pdf')
+  .then(res => res.blob())
+  .then(blob => {
+    const url = URL.createObjectURL(blob);
+    window.open(url);
+  });
+
+
+//  Error hnadle
+fetch('/api/data')
+  .then(res => {
+    if (!res.ok) {
+      throw new Error(`HTTP Error ${res.status}`);
+    }
+    return res.json();
+  })
+  .then(data => console.log(data))
+  .catch(err => console.error('Network or API error:', err));
+
+  //Send form data (multipart/form-data)
+  const formData = new FormData();
+formData.append('file', fileInput.files[0]);
+formData.append('username', 'john');
+
+fetch('/upload', {
+  method: 'POST',
+  body: formData
+});
+
+// Send URL-encoded Data (x-www-form-urlencoded)
+const params = new URLSearchParams();
+params.append('email', 'test@example.com');
+params.append('password', '1234');
+
+fetch('/login', {
+  method: 'POST',
+  mode:'cors',
+  headers: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  },
+  body: params
+});
+
+// async/ await
+async function loadData() {
+  try {
+    const response = await fetch('/api/items');
+    if (!response.ok) throw new Error('Failed to load');
+    const data = await response.json();
+    console.log(data);
+  } catch (err) {
+    console.error('Fetch error:', err);
+  }
+}
+
+

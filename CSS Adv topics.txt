@@ -1,0 +1,33 @@
+1) Layout Techniques
+	- Flexbox
+	- Grid
+	- Positioning(position: static | relative | absolute | fixed | sticky top, right, bottom, left, z-index)
+
+2) Box Model and Spacing
+
+3) Selectors
+
+4) Styling Concepts (color, background, background-image, background-size, opacity, box-shadow, text-shadow, border-style, border-width, 			  border-color, outline, outline-offset, cursor, pointer-events)
+
+5) Typography and Text
+
+6) Animation and Transitions
+
+7) Responsive Design
+
+8) CSS Functions
+
+9) Advanced Features
+	- @supports (feature queries)
+	- @layer (CSS cascade layers)
+	- Logical properties: margin-inline, padding-block, etc.
+	- Container queries (@container in modern CSS)
+	- Subgrid (in modern Grid support)
+
+10) Best Practices
+	- BEM (Block Element Modifier)
+	- Utility-first CSS (e.g., Tailwind)
+	- Atomic CSS
+	- CSS Resets vs Normalize.css
+	- Critical CSS
+	- Purging unused CSS
